@@ -1,0 +1,24 @@
+# Quartus build output (rebuild with: quartus_sh -t setup.tcl; quartus_sh --flow compile vga)
+quartus/db/
+quartus/incremental_db/
+quartus/simulation/
+quartus/output_files/
+*.rpt
+*.summary
+*.smsg
+*.done
+*.jdi
+*.jditmp
+*.pin
+*.sld
+*.sof
+*.pof
+*.qws
+*.flock
+
+# Simulation output
+sim/work/
+*.vvp
+*.vcd
+*.fst
+transcript
