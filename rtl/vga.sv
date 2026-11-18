@@ -1,6 +1,15 @@
 // 640x480 60Hz
 // clk = 50 mhz, 2 clk = 1 pixel (25 MHz)
-module vga (
+module vga #(
+    parameter H_VIS  = 640,
+    parameter H_FP   = 16,
+    parameter H_SYNC = 96,
+    parameter H_BP   = 48,
+    parameter V_VIS  = 480,
+    parameter V_FP   = 10,
+    parameter V_SYNC = 2,
+    parameter V_BP   = 33
+)(
     input  wire clk,     
     input  wire rst_n,   
     input  wire btn_n,  
@@ -10,6 +19,9 @@ module vga (
     output reg  g,
     output reg  b
 );
+    localparam H_TOTAL = H_VIS + H_FP + H_SYNC + H_BP;
+    localparam V_TOTAL = V_VIS + V_FP + V_SYNC + V_BP;
+
     reg       pix_en;     
     reg [9:0] x;          // 799
     reg [9:0] y;          // 524
@@ -26,9 +38,9 @@ module vga (
             x <= 0;
             y <= 0;
         end else if (pix_en) begin
-            if (x == 799) begin //ve dau dong
+            if (x == H_TOTAL-1) begin //ve dau dong
                 x <= 0;
-                if (y == 524) y <= 0; //ve dau cot
+                if (y == V_TOTAL-1) y <= 0; //ve dau cot
                 else          y <= y + 1; //xuong dong 
             end else
                 x <= x + 1; 
@@ -43,11 +55,11 @@ module vga (
     end
 
     // vung hien thi 
-    wire visible = (x < 640) && (y < 480);
+    wire visible = (x < H_VIS) && (y < V_VIS);
     always @(posedge clk)
         if (pix_en) begin
-            hsync <= ~((x >= 656) && (x < 752));  
-            vsync <= ~((y >= 490) && (y < 492)); 
+            hsync <= ~((x >= H_VIS+H_FP) && (x < H_VIS+H_FP+H_SYNC));  
+            vsync <= ~((y >= V_VIS+V_FP) && (y < V_VIS+V_FP+V_SYNC)); 
             r <= visible & on;
             g <= visible & on;
             b <= visible & on;
