@@ -22,3 +22,5 @@ sim/work/
 *.vcd
 *.fst
 transcript
+*.ppm
+*.wlf

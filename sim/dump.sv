@@ -1,7 +1,7 @@
-// Waveform dump for Icarus/GTKWave; kept separate so tb.sv stays untouched.
+// Waveform dump for Icarus/GTKWave; works with any testbench (dumps every signal).
 module dump;
     initial begin
-        $dumpfile("tb_vga.fst");
-        $dumpvars(0, tb_vga);
+        $dumpfile("wave.fst");
+        $dumpvars;
     end
 endmodule
