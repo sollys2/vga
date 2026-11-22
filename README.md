@@ -5,6 +5,8 @@ A simple VGA controller (640×480 @ 60 Hz) written in SystemVerilog for the **Te
 - **Simulation:** QuestaSim
 - **Synthesis & programming:** Quartus Prime Lite
 
+The board offers a clock signal of 50MHz, but a standard 640x460 60Hz VGA monitor requires a speed of about 25.175 millions pixels per second. So i splitted the 50MHz to half, expecting that the monitor could handle the difference of 7% (25MHz vs 25.175MHz).
+
 ## Hardware connection
 
 The FPGA drives the monitor through a small adapter board: JP1 header → jumper wires → resistors → DB15 (VGA) connector → monitor.

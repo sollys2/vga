@@ -1,8 +1,10 @@
 # Quartus build output (rebuild with: quartus_sh -t setup.tcl; quartus_sh --flow compile vga)
-quartus/db/
-quartus/incremental_db/
-quartus/simulation/
-quartus/output_files/
+# applies to every Quartus project folder (quartus/, quartus_phase1/, ...)
+db/
+incremental_db/
+quartus*/simulation/
+output_files/
+*.qmsg
 *.rpt
 *.summary
 *.smsg
