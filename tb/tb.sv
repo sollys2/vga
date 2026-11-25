@@ -7,7 +7,7 @@ module tb_vga;
     vga dut (.clk(clk), .rst_n(rst_n), .btn_n(btn_n),
              .hsync(hsync), .vsync(vsync), .r(r), .g(g), .b(b));
 
-    always #10 clk = ~clk;   // 20 ns -> 50 MHz
+    always #10 clk = ~clk;   
     initial begin
         #100 rst_n = 1;
         #20000000; //rst xong cho 20ms 
