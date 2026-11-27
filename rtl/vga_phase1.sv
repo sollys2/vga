@@ -1,4 +1,3 @@
-// Phase 1: 640x480 60Hz, hien 2 anh tu ROM, KEY1 doi anh
 // clk = 50 mhz, 2 clk = 1 pixel (25 MHz)
 // sel = 0: anh cho 240x240, sel = 1: anh woof 320x240
 // anh nam giua man hinh, ngoai anh -> mau den
@@ -11,13 +10,10 @@ module vga_phase1 #(
     parameter V_FP   = 10,
     parameter V_SYNC = 2,
     parameter V_BP   = 33,
-    // kich thuoc anh
     parameter DOG_W  = 240,
     parameter DOG_H  = 240,
     parameter WOOF_W = 320,
     parameter WOOF_H = 240,
-    // file anh: moi dong 1 so 0..7 = {r,g,b}
-    // duong dan tinh tu thu muc quartus/ (hoac sim/)
     parameter DOG_FILE  = "../photos/nonmoving_images/hex_format/dog_240x240_3bit.list",
     parameter WOOF_FILE = "../photos/nonmoving_images/hex_format/woof_320x240_3bit.list"
 )(
@@ -32,13 +28,10 @@ module vga_phase1 #(
 );
     localparam H_TOTAL = H_VIS + H_FP + H_SYNC + H_BP;
     localparam V_TOTAL = V_VIS + V_FP + V_SYNC + V_BP;
-
-    // goc tren trai cua anh (dat giua man hinh)
     localparam DOG_X0  = (H_VIS - DOG_W)  / 2;   // 200
     localparam DOG_Y0  = (V_VIS - DOG_H)  / 2;   // 120
     localparam WOOF_X0 = (H_VIS - WOOF_W) / 2;   // 160
     localparam WOOF_Y0 = (V_VIS - WOOF_H) / 2;   // 120
-
     localparam DOG_N  = DOG_W  * DOG_H;          // 57600 o
     localparam WOOF_N = WOOF_W * WOOF_H;         // 76800 o
 

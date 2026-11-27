@@ -17,9 +17,15 @@ The FPGA drives the monitor through a small adapter board: JP1 header → jumper
 
 | Signals | Name | FPGA pin | GPIO (JP1 pin) | Wire colour | DB15 pin | Voltage | Description |
 |---|---|---|---|---|---|---|---|
-| R | Red Video Signal | PIN_A6 | GPIO_011 (16) | Purple | 1 | 0 to +0.72V | Red on/off for current pixel, through 270 Ω |
-| G | Green Video Signal | PIN_E6 | GPIO_017 (22) | Green | 2 | 0 to +0.72V | Green on/off for current pixel, through 270 Ω |
-| B | Blue Video Signal | PIN_E9 | GPIO_023 (28) | Red | 3 | 0 to +0.72V | Blue on/off for current pixel, through 270 Ω |
+| R[2] | Red Video Signal, MSB | PIN_A6 | GPIO_011 (16) | Purple | 1 | 0 / +3.3V | Red bit 2 (weight 4), through 270 Ω |
+| R[1] | Red Video Signal | PIN_D6 | GPIO_013 (18) | – | 1 | 0 / +3.3V | Red bit 1 (weight 2), through 560 Ω |
+| R[0] | Red Video Signal, LSB | PIN_D5 | GPIO_09 (14) | – | 1 | 0 / +3.3V | Red bit 0 (weight 1), through 1000 Ω |
+| G[2] | Green Video Signal, MSB | PIN_E6 | GPIO_017 (22) | Green | 2 | 0 / +3.3V | Green bit 2 (weight 4), through 270 Ω |
+| G[1] | Green Video Signal | PIN_D8 | GPIO_019 (24) | – | 2 | 0 / +3.3V | Green bit 1 (weight 2), through 560 Ω |
+| G[0] | Green Video Signal, LSB | PIN_C6 | GPIO_015 (20) | – | 2 | 0 / +3.3V | Green bit 0 (weight 1), through 1000 Ω |
+| B[2] | Blue Video Signal, MSB | PIN_E9 | GPIO_023 (28) | Red | 3 | 0 / +3.3V | Blue bit 2 (weight 4), through 270 Ω |
+| B[1] | Blue Video Signal | PIN_F8 | GPIO_021 (26) | – | 3 | 0 / +3.3V | Blue bit 1 (weight 2), through 560 Ω |
+| B[0] | Blue Video Signal, LSB | PIN_B11 | GPIO_029 (36) | – | 3 | 0 / +3.3V | Blue bit 0 (weight 1), through 1000 Ω |
 | GND | Ground | – | GND (30) | Black | 5 (bridged to 6, 7, 8, 10) | 0V | Common ground between FPGA board and monitor |
 | HSYNC | Horizontal Synchronization | PIN_D9 | GPIO_025 (32) | White | 13 | 0 / +3.3V | Negative pulse marks the start of a new line (96 pixels low) |
 | VSYNC | Vertical Synchronization | PIN_E10 | GPIO_027 (34) | White | 14 | 0 / +3.3V | Negative pulse marks the start of a new frame (2 lines low) |
